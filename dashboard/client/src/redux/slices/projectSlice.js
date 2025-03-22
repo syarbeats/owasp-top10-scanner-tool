@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { setAlert } from './alertSlice';
 
@@ -240,5 +240,18 @@ const projectSlice = createSlice({
 });
 
 export const { clearProject, clearError } = projectSlice.actions;
+
+// Selectors
+export const selectAllProjects = state => state.projects.projects;
+
+// Select 5 most recent projects by creation date
+export const selectRecentProjects = createSelector(
+  [selectAllProjects],
+  (projects) => {
+    return [...projects]
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      .slice(0, 5);
+  }
+);
 
 export default projectSlice.reducer;
