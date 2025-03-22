@@ -171,7 +171,7 @@ const Sidebar = ({ open, toggleSidebar }) => {
                 <ListItem key={project._id} disablePadding>
                   <ListItemButton
                     component={Link}
-                    to={`/projects/${project._id}`}
+                    to={`/dashboard/project/${project._id}`}
                     selected={isActive(`/projects/${project._id}`)}
                     sx={{
                       pl: 4,

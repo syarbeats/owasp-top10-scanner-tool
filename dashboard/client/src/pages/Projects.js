@@ -174,7 +174,7 @@ const Projects = () => {
                   paginatedProjects.map(project => (
                     <TableRow key={project._id}>
                       <TableCell>
-                        <RouterLink to={`/projects/${project._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <RouterLink to={`/dashboard/project/${project._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                           <Typography variant="body1" color="primary" sx={{ fontWeight: 'medium' }}>
                             {project.name}
                           </Typography>
