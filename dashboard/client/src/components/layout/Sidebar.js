@@ -11,8 +11,7 @@ import {
   ListItemText,
   Divider,
   Toolbar,
-  Collapse,
-  Typography
+  Collapse
 } from '@mui/material';
 import {
   Dashboard as DashboardIcon,
@@ -22,8 +21,7 @@ import {
   Settings as SettingsIcon,
   ExpandLess,
   ExpandMore,
-  Add as AddIcon,
-  Security as SecurityIcon
+  Add as AddIcon
 } from '@mui/icons-material';
 import { selectRecentProjects } from '../../redux/slices/projectSlice';
 
@@ -170,68 +168,37 @@ const Sidebar = ({ open, toggleSidebar }) => {
             <List component="div" disablePadding>
               {/* Recent projects */}
               {recentProjects.map(project => (
-                <React.Fragment key={project._id}>
-                  <ListItem disablePadding>
-                    <ListItemButton
-                      component={Link}
-                      to={`/dashboard/project/${project._id}`}
-                      selected={isActive(`/dashboard/project/${project._id}`)}
-                      sx={{
-                        pl: 4,
-                        '&.Mui-selected': {
+                <ListItem key={project._id} disablePadding>
+                  <ListItemButton
+                    component={Link}
+                    to={`/dashboard/project/${project._id}`}
+                    selected={isActive(`/dashboard/project/${project._id}`)}
+                    sx={{
+                      pl: 4,
+                      '&.Mui-selected': {
+                        backgroundColor: 'primary.light',
+                        '&:hover': {
                           backgroundColor: 'primary.light',
-                          '&:hover': {
-                            backgroundColor: 'primary.light',
-                          },
                         },
+                      },
+                    }}
+                  >
+                    <ListItemText
+                      primary={project.name}
+                      primaryTypographyProps={{
+                        noWrap: true,
+                        style: {
+                          maxWidth: '180px',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis'
+                        }
                       }}
-                    >
-                      <ListItemText
-                        primary={project.name}
-                        primaryTypographyProps={{
-                          noWrap: true,
-                          style: {
-                            maxWidth: '180px',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis'
-                          }
-                        }}
-                        sx={{
-                          color: isActive(`/dashboard/project/${project._id}`) ? 'primary.main' : 'inherit',
-                        }}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                  <ListItem disablePadding>
-                    <ListItemButton
-                      component={Link}
-                      to={`/vulnerabilities/project/${project._id}`}
-                      selected={isActive(`/vulnerabilities/project/${project._id}`)}
                       sx={{
-                        pl: 5,
-                        '&.Mui-selected': {
-                          backgroundColor: 'primary.light',
-                          '&:hover': {
-                            backgroundColor: 'primary.light',
-                          },
-                        },
+                        color: isActive(`/dashboard/project/${project._id}`) ? 'primary.main' : 'inherit',
                       }}
-                    >
-                      <ListItemIcon sx={{ minWidth: '30px' }}>
-                        <SecurityIcon fontSize="small" />
-                      </ListItemIcon>
-                      <ListItemText
-                        primary="Vulnerabilities"
-                        sx={{
-                          '& .MuiTypography-root': {
-                            fontSize: '0.875rem',
-                          },
-                          color: isActive(`/vulnerabilities/project/${project._id}`) ? 'primary.main' : 'inherit',
-                        }}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                </React.Fragment>
+                    />
+                  </ListItemButton>
+                </ListItem>
               ))}
               
               {/* All Projects link */}
