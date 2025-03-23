@@ -10,6 +10,52 @@ const { Vulnerability, Scan, Project } = require('../models');
 const { authenticate } = require('../middleware/auth');
 
 /**
+ * @route   GET /api/vulnerabilities
+ * @desc    Get all vulnerabilities for projects where user is a member
+ * @access  Private
+ */
+router.get('/', authenticate, async (req, res) => {
+  try {
+    // Get projects where user is a member
+    const projects = await Project.find({
+      $or: [
+        { owner: req.user.id },
+        { team: req.user.id }
+      ]
+    });
+    
+    const projectIds = projects.map(project => project._id);
+    
+    // Get scans for these projects
+    const scanIds = await Scan.find({ projectId: { $in: projectIds } }).distinct('_id');
+    
+    // Get vulnerabilities for these scans
+    const vulnerabilities = await Vulnerability.find({ scanId: { $in: scanIds } })
+      .populate({
+        path: 'scanId',
+        select: 'projectId createdAt',
+        populate: {
+          path: 'projectId',
+          select: 'name'
+        }
+      })
+      .sort({ createdAt: -1 });
+    
+    // Transform vulnerabilities to include project info
+    const transformedVulnerabilities = vulnerabilities.map(vuln => ({
+      ...vuln.toObject(),
+      projectName: vuln.scanId.projectId.name,
+      projectId: vuln.scanId.projectId._id
+    }));
+    
+    res.json(transformedVulnerabilities);
+  } catch (error) {
+    console.error('Get all vulnerabilities error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+/**
  * @route   GET /api/vulnerabilities/:id
  * @desc    Get vulnerability by ID
  * @access  Private
