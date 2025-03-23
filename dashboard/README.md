@@ -32,8 +32,8 @@ The dashboard is built using the MERN stack:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/owasp-scanner/owasp-scanner.git
-   cd owasp-scanner/dashboard
+   git clone https://github.com/syarbeats/owasp-top10-scanner-tool.git
+   cd owasp-top10-scanner-tool/dashboard
    ```
 
 2. Install dependencies:
