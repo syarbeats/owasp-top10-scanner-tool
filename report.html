@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP Top 10 Scan Results</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .summary {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #f8f9fa;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        .high {
+            color: #dc3545;
+        }
+        .medium {
+            color: #ffc107;
+        }
+        .low {
+            color: #28a745;
+        }
+        .header {
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .timestamp {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>OWASP Top 10 Scan Results</h1>
+            <div class="timestamp">Generated on: 3/25/2025, 4:09:08 PM</div>
+        </div>
+        
+        <div class="summary">
+            <h2>Scan Summary</h2>
+            <p><strong>Project Path:</strong> test-project</p>
+            <p><strong>Files Scanned:</strong> 3</p>
+            <p><strong>Vulnerabilities Found:</strong> 24</p>
+        </div>
+
+        <h2>Detected Vulnerabilities</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Rule ID</th>
+                    <th>Severity</th>
+                    <th>Location</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+    <tr>
+      <td>A06:2021-001</td>
+      <td>info</td>
+      <td>package.json:1</td>
+      <td>Found package.json file. Dependencies should be scanned with a dedicated tool like npm audit, Snyk, or OWASP Dependency Check.</td>
+    </tr>
+  
+    <tr>
+      <td>A01:2021-001</td>
+      <td>high</td>
+      <td>src/app.js:28</td>
+      <td>Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.</td>
+    </tr>
+  
+    <tr>
+      <td>A01:2021-001</td>
+      <td>high</td>
+      <td>src/app.js:42</td>
+      <td>Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.</td>
+    </tr>
+  
+    <tr>
+      <td>A01:2021-001</td>
+      <td>high</td>
+      <td>src/app.js:60</td>
+      <td>Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.</td>
+    </tr>
+  
+    <tr>
+      <td>A01:2021-001</td>
+      <td>high</td>
+      <td>src/app.js:80</td>
+      <td>Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.</td>
+    </tr>
+  
+    <tr>
+      <td>A01:2021-001</td>
+      <td>high</td>
+      <td>src/app.js:94</td>
+      <td>Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.</td>
+    </tr>
+  
+    <tr>
+      <td>A01:2021-001</td>
+      <td>high</td>
+      <td>src/app.js:109</td>
+      <td>Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.</td>
+    </tr>
+  
+    <tr>
+      <td>A01:2021-004</td>
+      <td>high</td>
+      <td>src/app.js:18</td>
+      <td>Application functions that do not properly check if the user is authorized to access them.</td>
+    </tr>
+  
+    <tr>
+      <td>A01:2021-004</td>
+      <td>high</td>
+      <td>src/app.js:57</td>
+      <td>Application functions that do not properly check if the user is authorized to access them.</td>
+    </tr>
+  
+    <tr>
+      <td>A01:2021-004</td>
+      <td>high</td>
+      <td>src/app.js:57</td>
+      <td>Application functions that do not properly check if the user is authorized to access them.</td>
+    </tr>
+  
+    <tr>
+      <td>A02:2021-001</td>
+      <td>high</td>
+      <td>src/app.js:57</td>
+      <td>Use of cryptographically weak algorithms that may be susceptible to attacks.</td>
+    </tr>
+  
+    <tr>
+      <td>A02:2021-002</td>
+      <td>critical</td>
+      <td>src/app.js:21</td>
+      <td>Hardcoded credentials, API keys, or cryptographic keys in source code.</td>
+    </tr>
+  
+    <tr>
+      <td>A04:2021-002</td>
+      <td>high</td>
+      <td>src/app.js:29</td>
+      <td>Endpoints that process user input without proper validation.</td>
+    </tr>
+  
+    <tr>
+      <td>A04:2021-002</td>
+      <td>high</td>
+      <td>src/app.js:81</td>
+      <td>Endpoints that process user input without proper validation.</td>
+    </tr>
+  
+    <tr>
+      <td>A04:2021-002</td>
+      <td>high</td>
+      <td>src/app.js:95</td>
+      <td>Endpoints that process user input without proper validation.</td>
+    </tr>
+  
+    <tr>
+      <td>A05:2021-001</td>
+      <td>critical</td>
+      <td>src/app.js:20</td>
+      <td>Use of default, weak, or hardcoded credentials in configuration files.</td>
+    </tr>
+  
+    <tr>
+      <td>A05:2021-002</td>
+      <td>medium</td>
+      <td>src/app.js:34</td>
+      <td>Detailed error messages that could reveal sensitive information about the application.</td>
+    </tr>
+  
+    <tr>
+      <td>A07:2021-001</td>
+      <td>high</td>
+      <td>src/app.js:64</td>
+      <td>Insufficient password complexity or validation requirements.</td>
+    </tr>
+  
+    <tr>
+      <td>A07:2021-001</td>
+      <td>high</td>
+      <td>src/app.js:64</td>
+      <td>Insufficient password complexity or validation requirements.</td>
+    </tr>
+  
+    <tr>
+      <td>A08:2021-001</td>
+      <td>critical</td>
+      <td>src/app.js:103</td>
+      <td>Unsafe deserialization of user-supplied data that could lead to remote code execution.</td>
+    </tr>
+  
+    <tr>
+      <td>A09:2021-003</td>
+      <td>medium</td>
+      <td>src/app.js:57</td>
+      <td>Lack of audit logging for critical operations or data modifications.</td>
+    </tr>
+  
+    <tr>
+      <td>A06:2021-002</td>
+      <td>high</td>
+      <td>src/index.html:8</td>
+      <td>Direct inclusion of potentially vulnerable JavaScript libraries.</td>
+    </tr>
+  
+    <tr>
+      <td>A08:2021-002</td>
+      <td>medium</td>
+      <td>src/index.html:8</td>
+      <td>External scripts or stylesheets loaded without Subresource Integrity (SRI) checks.</td>
+    </tr>
+  
+    <tr>
+      <td>A08:2021-002</td>
+      <td>medium</td>
+      <td>src/index.html:10</td>
+      <td>External scripts or stylesheets loaded without Subresource Integrity (SRI) checks.</td>
+    </tr>
+  
+            </tbody>
+        </table>
+        
+    </div>
+</body>
+</html>

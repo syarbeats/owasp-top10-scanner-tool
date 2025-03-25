@@ -202,19 +202,34 @@ async function findFilesToScan(projectPath, excludePatterns = []) {
  * Output scan results in the specified format
  * @param {Object} results - Scan results
  * @param {string} format - Output format (json, html, text)
+ * @param {string} [outputPath] - Optional path to save the output to a file
  */
-function outputResults(results, format = 'text') {
+async function outputResults(results, format = 'text', outputPath = null) {
+  let output;
+  
   switch (format.toLowerCase()) {
     case 'json':
-      console.log(JSON.stringify(results, null, 2));
+      output = JSON.stringify(results, null, 2);
       break;
     case 'html':
-      console.log(chalk.yellow('HTML output not implemented yet.'));
+      const { generateHtmlReport } = require('../utils/htmlGenerator');
+      output = generateHtmlReport(results);
       break;
     case 'text':
     default:
       // Text output is handled in the CLI command
-      break;
+      return;
+  }
+
+  if (outputPath) {
+    try {
+      await fs.writeFile(outputPath, output);
+      console.log(chalk.green(`Results saved to: ${outputPath}`));
+    } catch (error) {
+      console.error(chalk.red(`Error saving results: ${error.message}`));
+    }
+  } else {
+    console.log(output);
   }
 }
 

@@ -8,7 +8,15 @@ A command-line tool for scanning applications for OWASP Top Ten vulnerabilities.
 - Supports multiple file types (JavaScript, TypeScript, HTML, CSS, PHP, Python, Java, etc.)
 - Provides detailed vulnerability reports with locations and remediation suggestions
 - Configurable rule sets and exclusion patterns
-- JSON, text, and HTML output formats
+- Multiple output formats:
+  - Text: Human-readable console output
+  - JSON: Machine-readable format for integration
+  - HTML: Interactive reports with:
+    - Clean, modern design
+    - Detailed vulnerability tables
+    - Severity indicators
+    - File location links
+    - Responsive layout
 
 ## Installation
 
@@ -34,6 +42,12 @@ node index.js scan /path/to/project
 
 # Scan with specific output format
 node index.js scan /path/to/project --output json
+
+# Generate HTML report
+node index.js scan /path/to/project --output html
+
+# Save HTML report to file
+node index.js scan /path/to/project --output html --output-file report.html
 
 # Scan with custom configuration
 node index.js scan /path/to/project --config /path/to/config.json
