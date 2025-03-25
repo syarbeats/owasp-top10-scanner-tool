@@ -22,6 +22,7 @@ program
   .description('Scan a project for OWASP Top Ten vulnerabilities')
   .argument('<path>', 'Path to the project to scan')
   .option('-o, --output <format>', 'Output format (json, html, text)', 'text')
+  .option('-f, --output-file <path>', 'Path to save the output file')
   .option('-c, --config <path>', 'Path to configuration file')
   .option('--offline', 'Run in offline mode without sending results to dashboard')
   .action(async (path, options) => {
@@ -44,8 +45,8 @@ program
           console.log();
         });
       }
-      
       // Output detailed results based on format
+      await scanner.outputResults(results, options.output, options.outputFile);
       scanner.outputResults(results, options.output);
       
       // Send results to dashboard if not in offline mode
