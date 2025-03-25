@@ -9,7 +9,7 @@ function generateHtmlReport(results) {
       <td>${escapeHtml(vuln.ruleId)}</td>
       <td>${escapeHtml(vuln.severity)}</td>
       <td>${escapeHtml(vuln.location)}</td>
-      <td>${escapeHtml(vuln.message)}</td>
+      <td>${escapeHtml(vuln.description)}</td>
     </tr>
   `).join('');
 
