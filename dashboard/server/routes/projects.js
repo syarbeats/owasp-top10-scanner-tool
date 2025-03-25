@@ -293,4 +293,106 @@ router.get('/:id/vulnerabilities', [authenticate, isProjectMember], async (req, 
   }
 });
 
+/**
+ * @route   GET /api/projects/:id/scans/stats
+ * @desc    Get scan statistics for a project
+ * @access  Private
+ */
+router.get('/:id/scans/stats', [authenticate, isProjectMember], async (req, res) => {
+  try {
+    const scans = await Scan.find({ projectId: req.params.id });
+    
+    // Calculate stats
+    const stats = {
+      totalScans: scans.length,
+      lastScan: scans.length > 0 ? scans[0].createdAt : null,
+      totalVulnerabilities: 0,
+      openVulnerabilities: 0,
+      fixedVulnerabilities: 0,
+      falsePositives: 0,
+      ignoredVulnerabilities: 0
+    };
+
+    // Get all vulnerabilities for these scans
+    const scanIds = scans.map(scan => scan._id);
+    const vulnerabilities = await Vulnerability.find({ scanId: { $in: scanIds } });
+
+    // Count vulnerabilities
+    stats.totalVulnerabilities = vulnerabilities.length;
+
+    // Count by status
+    vulnerabilities.forEach(vuln => {
+      switch (vuln.status) {
+        case 'open':
+          stats.openVulnerabilities++;
+          break;
+        case 'fixed':
+          stats.fixedVulnerabilities++;
+          break;
+        case 'false-positive':
+          stats.falsePositives++;
+          break;
+        case 'ignored':
+          stats.ignoredVulnerabilities++;
+          break;
+      }
+    });
+
+    res.json({ scanStats: stats });
+  } catch (error) {
+    console.error('Get project scan stats error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+/**
+ * @route   GET /api/projects/:id/vulnerabilities/stats/by-category
+ * @desc    Get vulnerability statistics by category for a project
+ * @access  Private
+ */
+router.get('/:id/vulnerabilities/stats/by-category', [authenticate, isProjectMember], async (req, res) => {
+  try {
+    // Get all scans for this project
+    const scans = await Scan.find({ projectId: req.params.id });
+    const scanIds = scans.map(scan => scan._id);
+    
+    // Aggregate vulnerabilities by category
+    const stats = await Vulnerability.aggregate([
+      { $match: { scanId: { $in: scanIds } } },
+      { $group: { _id: '$category', count: { $sum: 1 } } },
+      { $sort: { count: -1 } }
+    ]);
+    
+    res.json(stats);
+  } catch (error) {
+    console.error('Get project vulnerability stats by category error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+/**
+ * @route   GET /api/projects/:id/vulnerabilities/stats/by-severity
+ * @desc    Get vulnerability statistics by severity for a project
+ * @access  Private
+ */
+router.get('/:id/vulnerabilities/stats/by-severity', [authenticate, isProjectMember], async (req, res) => {
+  try {
+    // Get all scans for this project
+    const scans = await Scan.find({ projectId: req.params.id });
+    const scanIds = scans.map(scan => scan._id);
+    
+    // Aggregate vulnerabilities by severity
+    const stats = await Vulnerability.aggregate([
+      { $match: { scanId: { $in: scanIds } } },
+      { $group: { _id: '$severity', count: { $sum: 1 } } },
+      { $sort: { _id: -1 } }
+    ]);
+    
+    res.json(stats);
+  } catch (error) {
+    console.error('Get project vulnerability stats by severity error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 module.exports = router;

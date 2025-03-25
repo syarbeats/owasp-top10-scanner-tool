@@ -94,6 +94,21 @@ export const getScanStatistics = createAsyncThunk(
   }
 );
 
+// Get project scan statistics
+export const getProjectScanStatistics = createAsyncThunk(
+  'scans/getProjectScanStatistics',
+  async (projectId, { dispatch, rejectWithValue }) => {
+    try {
+      const res = await axios.get(`/api/projects/${projectId}/scans/stats`);
+      return res.data;
+    } catch (err) {
+      const errorMessage = err.response?.data?.message || 'Failed to fetch project scan statistics';
+      dispatch(setAlert({ message: errorMessage, type: 'error' }));
+      return rejectWithValue(errorMessage);
+    }
+  }
+);
+
 // Initial state
 const initialState = {
   scans: [],
@@ -197,6 +212,19 @@ const scanSlice = createSlice({
         state.statistics = action.payload;
       })
       .addCase(getScanStatistics.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      
+      // Get project scan statistics
+      .addCase(getProjectScanStatistics.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getProjectScanStatistics.fulfilled, (state, action) => {
+        state.loading = false;
+        state.statistics = action.payload;
+      })
+      .addCase(getProjectScanStatistics.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

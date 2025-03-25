@@ -1,4 +1,4 @@
-# OWASP Top Ten Scanner
+# OWASP Top 10 Scanner Tool
 
 A command-line tool for scanning applications for OWASP Top Ten vulnerabilities.
 
@@ -14,8 +14,8 @@ A command-line tool for scanning applications for OWASP Top Ten vulnerabilities.
 
 ```bash
 # Clone the repository
-git clone https://github.com/owasp-scanner/owasp-scanner.git
-cd owasp-scanner
+git clone https://github.com/syarbeats/owasp-top10-scanner-tool.git
+cd owasp-top10-scanner-tool
 
 # Install dependencies
 npm install

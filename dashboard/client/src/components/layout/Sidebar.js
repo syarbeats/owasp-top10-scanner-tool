@@ -1,5 +1,6 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import {
   Box,
   Drawer,
@@ -9,15 +10,20 @@ import {
   ListItemIcon,
   ListItemText,
   Divider,
-  Toolbar
+  Toolbar,
+  Collapse
 } from '@mui/material';
 import {
   Dashboard as DashboardIcon,
   Folder as ProjectsIcon,
   BugReport as VulnerabilitiesIcon,
   Assessment as ReportsIcon,
-  Settings as SettingsIcon
+  Settings as SettingsIcon,
+  ExpandLess,
+  ExpandMore,
+  Add as AddIcon
 } from '@mui/icons-material';
+import { selectRecentProjects } from '../../redux/slices/projectSlice';
 
 // Sidebar width
 const drawerWidth = 240;
@@ -30,17 +36,20 @@ const Sidebar = ({ open, toggleSidebar }) => {
   const location = useLocation();
   const navigate = useNavigate();
   
+  // State to track expanded menu items
+  const [expandedItems, setExpandedItems] = useState({
+    projects: false
+  });
+  
+  // Get recent projects from Redux store
+  const recentProjects = useSelector(selectRecentProjects);
+  
   // Navigation items
   const navItems = [
     {
       text: 'Dashboard',
       icon: <DashboardIcon />,
       path: '/dashboard'
-    },
-    {
-      text: 'Projects',
-      icon: <ProjectsIcon />,
-      path: '/projects'
     },
     {
       text: 'Vulnerabilities',
@@ -64,6 +73,14 @@ const Sidebar = ({ open, toggleSidebar }) => {
     navigate(path);
   };
   
+  // Toggle expanded state for menu items
+  const toggleExpanded = (item) => {
+    setExpandedItems(prev => ({
+      ...prev,
+      [item]: !prev[item]
+    }));
+  };
+  
   // Check if a navigation item is active
   const isActive = (path) => {
     return location.pathname === path || location.pathname.startsWith(`${path}/`);
@@ -85,6 +102,28 @@ const Sidebar = ({ open, toggleSidebar }) => {
       <Toolbar />
       <Box sx={{ overflow: 'auto' }}>
         <List>
+          {/* Dashboard item */}
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={() => handleNavItemClick('/dashboard')}
+              selected={isActive('/dashboard')}
+              sx={{
+                '&.Mui-selected': {
+                  backgroundColor: 'primary.light',
+                  '&:hover': {
+                    backgroundColor: 'primary.light',
+                  },
+                },
+              }}
+            >
+             
+             
+            </ListItemButton>
+          </ListItem>
+          
+          
+          
+          {/* Other navigation items */}
           {navItems.map((item) => (
             <ListItem key={item.text} disablePadding>
               <ListItemButton

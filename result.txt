@@ -1,0 +1,401 @@
+Starting OWASP Top Ten vulnerability scan...
+Scanning project at: test-project
+
+Scan completed successfully!
+Found 24 potential vulnerabilities.
+
+Vulnerability Summary:
+1. Dependency Scanning Required - A06:2021 - Vulnerable and Outdated Components
+   Found package.json file. Dependencies should be scanned with a dedicated tool like npm audit, Snyk, or OWASP Dependency Check.
+   Location: package.json:1
+
+2. Missing Access Control Checks - A01:2021 - Broken Access Control
+   Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.
+   Location: src/app.js:28
+
+3. Missing Access Control Checks - A01:2021 - Broken Access Control
+   Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.
+   Location: src/app.js:42
+
+4. Missing Access Control Checks - A01:2021 - Broken Access Control
+   Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.
+   Location: src/app.js:60
+
+5. Missing Access Control Checks - A01:2021 - Broken Access Control
+   Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.
+   Location: src/app.js:80
+
+6. Missing Access Control Checks - A01:2021 - Broken Access Control
+   Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.
+   Location: src/app.js:94
+
+7. Missing Access Control Checks - A01:2021 - Broken Access Control
+   Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.
+   Location: src/app.js:109
+
+8. Missing Function Level Access Control - A01:2021 - Broken Access Control
+   Application functions that do not properly check if the user is authorized to access them.
+   Location: src/app.js:18
+
+9. Missing Function Level Access Control - A01:2021 - Broken Access Control
+   Application functions that do not properly check if the user is authorized to access them.
+   Location: src/app.js:57
+
+10. Missing Function Level Access Control - A01:2021 - Broken Access Control
+   Application functions that do not properly check if the user is authorized to access them.
+   Location: src/app.js:57
+
+11. Weak Cryptographic Algorithms - A02:2021 - Cryptographic Failures
+   Use of cryptographically weak algorithms that may be susceptible to attacks.
+   Location: src/app.js:57
+
+12. Hardcoded Secrets - A02:2021 - Cryptographic Failures
+   Hardcoded credentials, API keys, or cryptographic keys in source code.
+   Location: src/app.js:21
+
+13. Lack of Input Validation - A04:2021 - Insecure Design
+   Endpoints that process user input without proper validation.
+   Location: src/app.js:29
+
+14. Lack of Input Validation - A04:2021 - Insecure Design
+   Endpoints that process user input without proper validation.
+   Location: src/app.js:81
+
+15. Lack of Input Validation - A04:2021 - Insecure Design
+   Endpoints that process user input without proper validation.
+   Location: src/app.js:95
+
+16. Default or Weak Credentials - A05:2021 - Security Misconfiguration
+   Use of default, weak, or hardcoded credentials in configuration files.
+   Location: src/app.js:20
+
+17. Verbose Error Messages - A05:2021 - Security Misconfiguration
+   Detailed error messages that could reveal sensitive information about the application.
+   Location: src/app.js:34
+
+18. Weak Password Requirements - A07:2021 - Identification and Authentication Failures
+   Insufficient password complexity or validation requirements.
+   Location: src/app.js:64
+
+19. Weak Password Requirements - A07:2021 - Identification and Authentication Failures
+   Insufficient password complexity or validation requirements.
+   Location: src/app.js:64
+
+20. Insecure Deserialization - A08:2021 - Software and Data Integrity Failures
+   Unsafe deserialization of user-supplied data that could lead to remote code execution.
+   Location: src/app.js:103
+
+21. Missing Audit Trails - A09:2021 - Security Logging and Monitoring Failures
+   Lack of audit logging for critical operations or data modifications.
+   Location: src/app.js:57
+
+22. Vulnerable JavaScript Libraries - A06:2021 - Vulnerable and Outdated Components
+   Direct inclusion of potentially vulnerable JavaScript libraries.
+   Location: src/index.html:8
+
+23. Missing Subresource Integrity - A08:2021 - Software and Data Integrity Failures
+   External scripts or stylesheets loaded without Subresource Integrity (SRI) checks.
+   Location: src/index.html:8
+
+24. Missing Subresource Integrity - A08:2021 - Software and Data Integrity Failures
+   External scripts or stylesheets loaded without Subresource Integrity (SRI) checks.
+   Location: src/index.html:10
+
+{
+  "summary": {
+    "projectPath": "test-project",
+    "timestamp": "2025-03-22T09:25:16.311Z",
+    "filesScanned": 3,
+    "vulnerabilitiesFound": 24
+  },
+  "vulnerabilities": [
+    {
+      "ruleId": "A06:2021-001",
+      "category": "A06:2021 - Vulnerable and Outdated Components",
+      "title": "Dependency Scanning Required",
+      "description": "Found package.json file. Dependencies should be scanned with a dedicated tool like npm audit, Snyk, or OWASP Dependency Check.",
+      "severity": "info",
+      "line": 1,
+      "column": 1,
+      "snippet": "package.json",
+      "remediation": "Run npm audit or use a dedicated dependency scanning tool to check for vulnerabilities in dependencies.",
+      "location": "package.json:1"
+    },
+    {
+      "ruleId": "A01:2021-001",
+      "category": "A01:2021 - Broken Access Control",
+      "title": "Missing Access Control Checks",
+      "description": "Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.",
+      "severity": "high",
+      "line": 28,
+      "column": 1,
+      "snippet": "app.get('/users', (req, res) => {",
+      "remediation": "Implement proper access control checks for all sensitive operations. Use middleware for authentication and authorization in web frameworks. Implement role-based access control (RBAC) or attribute-based access control (ABAC) systems.",
+      "location": "src/app.js:28"
+    },
+    {
+      "ruleId": "A01:2021-001",
+      "category": "A01:2021 - Broken Access Control",
+      "title": "Missing Access Control Checks",
+      "description": "Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.",
+      "severity": "high",
+      "line": 42,
+      "column": 1,
+      "snippet": "app.get('/admin/users', (req, res) => {",
+      "remediation": "Implement proper access control checks for all sensitive operations. Use middleware for authentication and authorization in web frameworks. Implement role-based access control (RBAC) or attribute-based access control (ABAC) systems.",
+      "location": "src/app.js:42"
+    },
+    {
+      "ruleId": "A01:2021-001",
+      "category": "A01:2021 - Broken Access Control",
+      "title": "Missing Access Control Checks",
+      "description": "Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.",
+      "severity": "high",
+      "line": 60,
+      "column": 1,
+      "snippet": "app.post('/register', (req, res) => {",
+      "remediation": "Implement proper access control checks for all sensitive operations. Use middleware for authentication and authorization in web frameworks. Implement role-based access control (RBAC) or attribute-based access control (ABAC) systems.",
+      "location": "src/app.js:60"
+    },
+    {
+      "ruleId": "A01:2021-001",
+      "category": "A01:2021 - Broken Access Control",
+      "title": "Missing Access Control Checks",
+      "description": "Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.",
+      "severity": "high",
+      "line": 80,
+      "column": 1,
+      "snippet": "app.get('/fetch-url', (req, res) => {",
+      "remediation": "Implement proper access control checks for all sensitive operations. Use middleware for authentication and authorization in web frameworks. Implement role-based access control (RBAC) or attribute-based access control (ABAC) systems.",
+      "location": "src/app.js:80"
+    },
+    {
+      "ruleId": "A01:2021-001",
+      "category": "A01:2021 - Broken Access Control",
+      "title": "Missing Access Control Checks",
+      "description": "Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.",
+      "severity": "high",
+      "line": 94,
+      "column": 1,
+      "snippet": "app.get('/config', (req, res) => {",
+      "remediation": "Implement proper access control checks for all sensitive operations. Use middleware for authentication and authorization in web frameworks. Implement role-based access control (RBAC) or attribute-based access control (ABAC) systems.",
+      "location": "src/app.js:94"
+    },
+    {
+      "ruleId": "A01:2021-001",
+      "category": "A01:2021 - Broken Access Control",
+      "title": "Missing Access Control Checks",
+      "description": "Endpoints or functions that lack proper authorization checks, allowing unauthorized access to protected resources.",
+      "severity": "high",
+      "line": 109,
+      "column": 1,
+      "snippet": "app.post('/reset-password', (req, res) => {",
+      "remediation": "Implement proper access control checks for all sensitive operations. Use middleware for authentication and authorization in web frameworks. Implement role-based access control (RBAC) or attribute-based access control (ABAC) systems.",
+      "location": "src/app.js:109"
+    },
+    {
+      "ruleId": "A01:2021-004",
+      "category": "A01:2021 - Broken Access Control",
+      "title": "Missing Function Level Access Control",
+      "description": "Application functions that do not properly check if the user is authorized to access them.",
+      "severity": "high",
+      "line": 18,
+      "column": 17,
+      "snippet": "const db = mysql.createConnection({",
+      "remediation": "Implement consistent access control checks at the function or method level. Use decorators, annotations, or middleware to enforce authorization. Implement role-based access control and verify user permissions before executing sensitive operations.",
+      "location": "src/app.js:18"
+    },
+    {
+      "ruleId": "A01:2021-004",
+      "category": "A01:2021 - Broken Access Control",
+      "title": "Missing Function Level Access Control",
+      "description": "Application functions that do not properly check if the user is authorized to access them.",
+      "severity": "high",
+      "line": 57,
+      "column": 16,
+      "snippet": "return crypto.createHash('md5').update(password).digest('hex');",
+      "remediation": "Implement consistent access control checks at the function or method level. Use decorators, annotations, or middleware to enforce authorization. Implement role-based access control and verify user permissions before executing sensitive operations.",
+      "location": "src/app.js:57"
+    },
+    {
+      "ruleId": "A01:2021-004",
+      "category": "A01:2021 - Broken Access Control",
+      "title": "Missing Function Level Access Control",
+      "description": "Application functions that do not properly check if the user is authorized to access them.",
+      "severity": "high",
+      "line": 57,
+      "column": 34,
+      "snippet": "return crypto.createHash('md5').update(password).digest('hex');",
+      "remediation": "Implement consistent access control checks at the function or method level. Use decorators, annotations, or middleware to enforce authorization. Implement role-based access control and verify user permissions before executing sensitive operations.",
+      "location": "src/app.js:57"
+    },
+    {
+      "ruleId": "A02:2021-001",
+      "category": "A02:2021 - Cryptographic Failures",
+      "title": "Weak Cryptographic Algorithms",
+      "description": "Use of cryptographically weak algorithms that may be susceptible to attacks.",
+      "severity": "high",
+      "line": 57,
+      "column": 17,
+      "snippet": "return crypto.createHash('md5').update(password).digest('hex');",
+      "remediation": "Use strong, modern cryptographic algorithms. Replace MD5 and SHA1 with SHA-256 or SHA-3. Replace DES and 3DES with AES-256. Replace RC4 with ChaCha20-Poly1305 or AES-GCM.",
+      "location": "src/app.js:57"
+    },
+    {
+      "ruleId": "A02:2021-002",
+      "category": "A02:2021 - Cryptographic Failures",
+      "title": "Hardcoded Secrets",
+      "description": "Hardcoded credentials, API keys, or cryptographic keys in source code.",
+      "severity": "critical",
+      "line": 21,
+      "column": 3,
+      "snippet": "password: 'password123',  // A05:2021 - Security Misconfiguration (hardcoded credentials)",
+      "remediation": "Store secrets in environment variables, a secure vault, or a secrets management service. Never hardcode credentials in source code. Use configuration files that are not checked into version control or use environment-specific configuration.",
+      "location": "src/app.js:21"
+    },
+    {
+      "ruleId": "A04:2021-002",
+      "category": "A04:2021 - Insecure Design",
+      "title": "Lack of Input Validation",
+      "description": "Endpoints that process user input without proper validation.",
+      "severity": "high",
+      "line": 29,
+      "column": 18,
+      "snippet": "const userId = req.query.id;",
+      "remediation": "Implement proper input validation using validation libraries like Joi, Yup, or class-validator for JavaScript/TypeScript, or similar libraries for other languages. Validate input data against a schema before processing.",
+      "location": "src/app.js:29"
+    },
+    {
+      "ruleId": "A04:2021-002",
+      "category": "A04:2021 - Insecure Design",
+      "title": "Lack of Input Validation",
+      "description": "Endpoints that process user input without proper validation.",
+      "severity": "high",
+      "line": 81,
+      "column": 15,
+      "snippet": "const url = req.query.url;",
+      "remediation": "Implement proper input validation using validation libraries like Joi, Yup, or class-validator for JavaScript/TypeScript, or similar libraries for other languages. Validate input data against a schema before processing.",
+      "location": "src/app.js:81"
+    },
+    {
+      "ruleId": "A04:2021-002",
+      "category": "A04:2021 - Insecure Design",
+      "title": "Lack of Input Validation",
+      "description": "Endpoints that process user input without proper validation.",
+      "severity": "high",
+      "line": 95,
+      "column": 22,
+      "snippet": "const configFile = req.query.file || 'config.json';",
+      "remediation": "Implement proper input validation using validation libraries like Joi, Yup, or class-validator for JavaScript/TypeScript, or similar libraries for other languages. Validate input data against a schema before processing.",
+      "location": "src/app.js:95"
+    },
+    {
+      "ruleId": "A05:2021-001",
+      "category": "A05:2021 - Security Misconfiguration",
+      "title": "Default or Weak Credentials",
+      "description": "Use of default, weak, or hardcoded credentials in configuration files.",
+      "severity": "critical",
+      "line": 20,
+      "column": 3,
+      "snippet": "user: 'root',",
+      "remediation": "Use strong, unique credentials for all environments. Store credentials in environment variables or a secure vault, not in configuration files. Implement proper secrets management.",
+      "location": "src/app.js:20"
+    },
+    {
+      "ruleId": "A05:2021-002",
+      "category": "A05:2021 - Security Misconfiguration",
+      "title": "Verbose Error Messages",
+      "description": "Detailed error messages that could reveal sensitive information about the application.",
+      "severity": "medium",
+      "line": 34,
+      "column": 7,
+      "snippet": "console.error(err); // A09:2021 - Logging Failures (logging error details)",
+      "remediation": "Implement proper error handling that does not expose sensitive details to users. Log detailed errors server-side but return generic error messages to clients. Use a production mode that limits error details in responses.",
+      "location": "src/app.js:34"
+    },
+    {
+      "ruleId": "A07:2021-001",
+      "category": "A07:2021 - Identification and Authentication Failures",
+      "title": "Weak Password Requirements",
+      "description": "Insufficient password complexity or validation requirements.",
+      "severity": "high",
+      "line": 64,
+      "column": 7,
+      "snippet": "if (password.length > 3) {",
+      "remediation": "Implement strong password policies that require a minimum length of 8 characters, a mix of character types, and check against common passwords. Consider using a password strength library or NIST guidelines for password requirements.",
+      "location": "src/app.js:64"
+    },
+    {
+      "ruleId": "A07:2021-001",
+      "category": "A07:2021 - Identification and Authentication Failures",
+      "title": "Weak Password Requirements",
+      "description": "Insufficient password complexity or validation requirements.",
+      "severity": "high",
+      "line": 64,
+      "column": 7,
+      "snippet": "if (password.length > 3) {",
+      "remediation": "Implement strong password policies that require a minimum length of 8 characters, a mix of character types, and check against common passwords. Consider using a password strength library or NIST guidelines for password requirements.",
+      "location": "src/app.js:64"
+    },
+    {
+      "ruleId": "A08:2021-001",
+      "category": "A08:2021 - Software and Data Integrity Failures",
+      "title": "Insecure Deserialization",
+      "description": "Unsafe deserialization of user-supplied data that could lead to remote code execution.",
+      "severity": "critical",
+      "line": 103,
+      "column": 20,
+      "snippet": "const config = JSON.parse(data); // Unsafe deserialization",
+      "remediation": "Avoid deserializing data from untrusted sources. If deserialization is necessary, implement integrity checks like digital signatures or use safer alternatives like JSON with schema validation. For specific languages, use secure deserialization libraries that limit object creation.",
+      "location": "src/app.js:103"
+    },
+    {
+      "ruleId": "A09:2021-003",
+      "category": "A09:2021 - Security Logging and Monitoring Failures",
+      "title": "Missing Audit Trails",
+      "description": "Lack of audit logging for critical operations or data modifications.",
+      "severity": "medium",
+      "line": 57,
+      "column": 35,
+      "snippet": "return crypto.createHash('md5').update(password).digest('hex');",
+      "remediation": "Implement audit logging for all critical operations, especially those that modify data or affect system security. Include details about who performed the action, what was changed, and when the change occurred. Consider using an audit logging framework or library.",
+      "location": "src/app.js:57"
+    },
+    {
+      "ruleId": "A06:2021-002",
+      "category": "A06:2021 - Vulnerable and Outdated Components",
+      "title": "Vulnerable JavaScript Libraries",
+      "description": "Direct inclusion of potentially vulnerable JavaScript libraries.",
+      "severity": "high",
+      "line": 8,
+      "column": 5,
+      "snippet": "<script src=\"https://code.jquery.com/jquery-1.12.4.min.js\"></script>",
+      "remediation": "Update to the latest versions of JavaScript libraries. Consider using package managers instead of direct CDN links to make updates easier. Implement Subresource Integrity (SRI) checks for third-party resources.",
+      "location": "src/index.html:8"
+    },
+    {
+      "ruleId": "A08:2021-002",
+      "category": "A08:2021 - Software and Data Integrity Failures",
+      "title": "Missing Subresource Integrity",
+      "description": "External scripts or stylesheets loaded without Subresource Integrity (SRI) checks.",
+      "severity": "medium",
+      "line": 8,
+      "column": 5,
+      "snippet": "<script src=\"https://code.jquery.com/jquery-1.12.4.min.js\"></script>",
+      "remediation": "Add integrity and crossorigin attributes to script and link tags that load external resources. Generate SRI hashes using tools like srihash.org or the SRI Hash Generator plugin. Consider hosting critical scripts locally when possible.",
+      "location": "src/index.html:8"
+    },
+    {
+      "ruleId": "A08:2021-002",
+      "category": "A08:2021 - Software and Data Integrity Failures",
+      "title": "Missing Subresource Integrity",
+      "description": "External scripts or stylesheets loaded without Subresource Integrity (SRI) checks.",
+      "severity": "medium",
+      "line": 10,
+      "column": 5,
+      "snippet": "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js\"></script>",
+      "remediation": "Add integrity and crossorigin attributes to script and link tags that load external resources. Generate SRI hashes using tools like srihash.org or the SRI Hash Generator plugin. Consider hosting critical scripts locally when possible.",
+      "location": "src/index.html:10"
+    }
+  ]
+}
